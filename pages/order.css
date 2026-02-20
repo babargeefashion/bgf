@@ -1,0 +1,1335 @@
+/* Custom Fonts and Variables */
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@700&family=Poppins:wght@400;600&display=swap');
+
+:root {
+    --navy-blue: #30475E;
+    --gold-accent: #DAA520;
+    --light-beige: #F8F0E3;
+    --header-height: 70px;
+    --announcement-height: 30px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #ffffff;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* ================================================= */
+/* --- 1. GLOBAL VARIABLES CHECK --- */
+/* ================================================= */
+:root {
+    /* ... (Yaqeen karein yeh values theek hon) ... */
+    --announcement-height: 40px;
+    --header-height: 70px;
+    /* ... */
+}
+
+/* ================================================= */
+/* --- 2. MAIN HEADER / TOP BAR (TRANSITION EFFECT) --- */
+/* ================================================= */
+
+/* Announcement Bar - Scroll hone par hide hoga */
+.announcement-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: var(--announcement-height);
+    background-color: var(--gold-accent);
+    color: var(--navy-blue);
+    z-index: 1001;
+    line-height: var(--announcement-height);
+    text-align: center;
+    overflow: hidden;
+    /* Transition add kiya taake smooth hide ho */
+    transition: transform 0.3s ease-in-out;
+}
+
+/* Header/Top Bar - Shuru mein Transparent/Blur */
+.top-bar {
+    position: fixed;
+    /* Announcement Bar ke neeche se shuru ho */
+    top: var(--announcement-height);
+    left: 0;
+    width: 100%;
+    height: var(--header-height);
+
+    /* Transparent aur Blur Effect */
+    background-color: rgba(48, 71, 94, 0.7);
+    /* Thoda sa transparent Navy Blue */
+    backdrop-filter: blur(5px);
+    /* BLUR EFFECT */
+
+    color: var(--light-beige);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 2%;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    /* Transition add kiya taake smooth change ho */
+    transition: all 0.5s ease-in-out;
+}
+
+
+/* Scroll Hone Ke Baad Ki State (JS se yeh class add hogi) */
+.top-bar.scrolled {
+    /* Header ko bilkul top (0) par shift karna hai */
+    top: 0;
+    /* Solid Navy Blue Background */
+    background-color: var(--navy-blue);
+    /* Blur Effect hata diya */
+    backdrop-filter: none;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+}
+
+/* JS se jab yeh class add hogi, toh Announcement Bar chhip jayega */
+.announcement-bar.hidden {
+    /* Announcement Bar ko uski height ke barabar upar shift kar diya */
+    transform: translateY(-100%);
+}
+
+/* Logo and Text Alignment */
+.brand-logo {
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+.brand-logo a {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    line-height: 1;
+}
+
+.site-logo {
+    max-height: 55px;
+    width: auto;
+    transition: max-height 0.3s ease, transform 0.3s ease;
+}
+
+.brand-name-text {
+    font-family: 'Great Vibes', cursive;
+    font-size: 2.5rem;
+    font-weight: 400;
+    letter-spacing: 1px;
+    color: var(--light-beige);
+    transition: color 0.3s ease, font-size 0.3s ease;
+}
+
+/* Right Side Actions Container (Buttons and Hamburger) */
+.header-actions {
+    display: flex;
+    /* Buttons aur Hamburger ko side-by-side rakhega */
+    align-items: center;
+    gap: 15px;
+}
+
+/* Buttons Styling */
+.nav-item {
+    font-size: 0.95rem;
+    font-weight: 600;
+    padding: 8px 12px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    white-space: nowrap;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+.cta-embroidery {
+    background-color: var(--gold-accent);
+    color: var(--navy-blue);
+    border: 1px solid var(--gold-accent);
+}
+
+.cta-embroidery:hover {
+    background-color: #f0c541;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(218, 165, 32, 0.4);
+}
+
+.cta-stitching {
+    background-color: transparent;
+    border: 1px solid var(--light-beige);
+}
+
+.cta-stitching:hover {
+    background-color: var(--light-beige);
+    color: var(--navy-blue);
+    transform: scale(1.03);
+}
+
+/* Hamburger Icon Styling (Hamesha visible) */
+.hamburger-menu {
+    display: block;
+    background: none;
+    border: none;
+    color: var(--light-beige);
+    font-size: 1.8rem;
+    cursor: pointer;
+    margin-left: 5px;
+}
+
+/* Scroll Effect */
+.top-bar.scrolled {
+    top: 0;
+    background-color: rgba(48, 71, 94, 0.9);
+}
+
+.top-bar.scrolled .site-logo {
+    max-height: 45px;
+}
+
+.top-bar.scrolled .brand-name-text {
+    font-size: 2.0rem;
+}
+
+/* Desktop Links/Extra CTAs ko chupa dein (Taki sirf buttons aur hamburger dikhe) */
+.order-nav {
+    display: none !important;
+}
+
+
+/* --- 3. Animated Mobile Menu Slider --- */
+.mobile-menu-slider {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 80%;
+    max-width: 300px;
+    height: 100%;
+    /* Gradient for transparent look */
+    background: linear-gradient(180deg, rgba(48, 71, 94, 0.95) 0%, rgba(218, 165, 32, 0.95) 100%);
+    z-index: 2000;
+    padding: 50px 25px;
+    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.3);
+    /* Off-screen by default */
+    transform: translateX(100%);
+    transition: transform 0.5s cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+.mobile-menu-slider.active {
+    transform: translateX(0);
+}
+
+/* Slide-in */
+.close-menu {
+    position: absolute;
+    top: 15px;
+    right: 25px;
+    background: none;
+    border: none;
+    color: var(--light-beige);
+    font-size: 2rem;
+    cursor: pointer;
+}
+
+/* Slider Links Styling */
+.slider-links a {
+    display: block;
+    padding: 15px 0;
+    color: var(--light-beige);
+    font-size: 1.2rem;
+    font-weight: 600;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.slider-links a:hover {
+    color: var(--gold-accent);
+    transform: translateX(5px);
+}
+
+.mobile-slider-contact {
+    margin-top: 30px;
+    font-size: 1rem !important;
+    color: var(--gold-accent) !important;
+}
+
+
+/* --- 4. Mobile Responsiveness --- */
+@media (max-width: 768px) {
+
+    /* Logo text chota karein taake buttons ke liye jagah banayen */
+    .brand-name-text {
+        font-size: 2.0rem;
+    }
+
+    /* Mobile par buttons ko chota karein */
+    .nav-item {
+        font-size: 0.75rem;
+        /* Aur chota kiya */
+        padding: 5px 8px;
+        gap: 3px;
+    }
+
+    /* Agar jagah kam ho to stitching button chupa sakte hain */
+    .cta-stitching {
+        display: none;
+        /* Sirf embroidery button dikhega, jagah bachane ke liye */
+    }
+}
+
+/* Hero Content Overlay */
+.hero-content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding-top: var(--header-height);
+    /* Header ke neeche se content shuru ho */
+
+    /* Dark Transparent Overlay for Text Visibility */
+    background: rgba(0, 0, 0, 0.55);
+    /* Thora zyada dark kiya taake video clear rahe */
+    color: var(--light-beige);
+    z-index: 10;
+}
+
+.hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    /* Bada aur wazeh title */
+    font-weight: 700;
+    margin-bottom: 10px;
+    text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.7);
+}
+
+.hero-title span {
+    color: var(--gold-accent);
+}
+
+.hero-subtitle {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.6rem;
+    margin-bottom: 40px;
+    font-weight: 400;
+}
+
+/* Call to Action Button */
+.cta-hero-button {
+    background-color: var(--gold-accent);
+    color: var(--navy-blue);
+    padding: 18px 40px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    border-radius: 5px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.cta-hero-button:hover {
+    background-color: #f0c541;
+    transform: scale(1.05);
+}
+
+/* Pulse Animation for CTA (Same as before) */
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(218, 165, 32, 0.7);
+    }
+
+    70% {
+        box-shadow: 0 0 0 20px rgba(218, 165, 32, 0);
+    }
+
+    100% {
+        box-shadow: 0 0 0 0 rgba(218, 165, 32, 0);
+    }
+}
+
+.pulse-animation {
+    animation: pulse 2s infinite;
+}
+
+
+/* --- Mobile Responsiveness (For Video and Text) --- */
+@media (max-width: 768px) {
+
+    .hero-title {
+        font-size: 1.5rem;
+        /* Mobile par title chota karein */
+        line-height: 1.2;
+    }
+
+    .hero-subtitle {
+        font-size: 1.1rem;
+        /* Mobile par subtitle chota karein */
+    }
+
+    .cta-hero-button {
+        padding: 12px 25px;
+        font-size: 1rem;
+    }
+}
+
+.hero-subtitle {
+    /* Define the bright neon color */
+    --neon-color: #9b3e26;
+    /* Vibrant Magenta */
+
+    /* Base Font Styles (from original) */
+    font-style: normal;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    /* Recommended a modern sans-serif for sharp neon */
+    letter-spacing: 2px;
+    /* Increased letter-spacing for glow visibility */
+    color: #e4a9a9;
+    /* Text itself should be pure white/very light for contrast */
+    font-weight: 900;
+    /* Boldest weight for solid text */
+    margin-top: 15px;
+    margin-bottom: 40px;
+    font-size: 1.8rem;
+    /* Slightly larger for impact */
+    text-transform: uppercase;
+
+    /* NEON GLOW EFFECT */
+    text-shadow:
+        /* 1st Layer: Inner, sharp glow */
+        0 0 7px var(--neon-color),
+        /* 2nd Layer: Medium, wide glow */
+        0 0 10px var(--neon-color),
+        /* 3rd Layer: Outer, strong glow */
+        0 0 21px var(--neon-color),
+        /* 4th Layer: Very wide, faded glow (the "halo") */
+        0 0 42px rgba(71, 52, 175, 0.6),
+        0 0 82px rgba(71, 52, 175, 0.4);
+
+    /* Optional: Add a slight animation for a subtle pulsing effect */
+    animation: neon-pulse 1.5s ease-in-out infinite alternate;
+}
+
+/* Optional: Keyframes for the pulsing animation */
+@keyframes neon-pulse {
+    from {
+        text-shadow:
+            0 0 7px var(--neon-color),
+            0 0 10px var(--neon-color),
+            0 0 21px var(--neon-color),
+            0 0 42px rgba(71, 52, 175, 0.6),
+            0 0 82px rgba(71, 52, 175, 0.4);
+    }
+
+    to {
+        text-shadow:
+            0 0 5px var(--neon-color),
+            0 0 8px var(--neon-color),
+            0 0 15px var(--neon-color),
+            0 0 35px rgba(71, 52, 175, 0.8),
+            /* Slightly brighter pulse */
+            0 0 65px rgba(71, 52, 175, 0.5);
+    }
+}
+
+/* Hero Section Container */
+.about-hero-slider {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    /* Full viewport height */
+    overflow: hidden;
+    /* Crucial to clip the zooming images */
+}
+
+/* Slides Container */
+.slides {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+/* Individual Slide */
+.slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    /* Hidden by default */
+    transition: opacity 1.5s ease-in-out;
+    /* Smooth fade between slides */
+    z-index: 1;
+}
+
+/* The Active Slide (Visible) */
+.slide.active {
+    opacity: 1;
+    z-index: 2;
+}
+
+/* Image Styling */
+.slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* Ensures image covers area without stretching */
+    object-position: center;
+
+    /* Initial State for Zoom */
+    transform: scale(1);
+    transition: transform 0.5s ease-out;
+    /* Fast reset when slide leaves */
+}
+
+/* The Zoom Effect Animation 
+           When the parent .slide has the .active class, 
+           the image slowly scales up */
+.slide.active img {
+    transform: scale(1.15);
+    /* Zoom level */
+    transition: transform 6s linear;
+    /* Duration matches slide interval + buffer */
+}
+
+/* Dark Overlay */
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: none;
+    z-index: 3;
+    pointer-events: none;
+    /* Allows clicking through if needed */
+}
+
+@keyframes fadeUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ================================================= */
+/* --- 6. FEATURED COLLECTIONS SECTION (LOCAL IMAGES & 2 ROWS) --- */
+/* ================================================= */
+
+.collections-section {
+    padding: 80px 5%;
+    background-color: #fff;
+    color: var(--navy-blue);
+    text-align: center;
+}
+
+/* collection-grid ko block banaya taake rows ek ke neeche ek aayen */
+.collection-grid {
+    display: block;
+    margin-top: 50px;
+}
+
+/* Naye Row Containers ke liye styling (har row ek grid hai) */
+.collection-row {
+    display: grid;
+    gap: 20px;
+    /* Cards ke beech space */
+    margin-bottom: 20px;
+    /* Rows ke beech space */
+}
+
+/* --- ROW 1: 4 Columns --- */
+.collection-row.row-1 {
+    grid-template-columns: repeat(4, 1fr);
+    /* 4 barabar columns */
+}
+
+/* --- ROW 2: 3 Columns (Center Alignment) --- */
+.collection-row.row-2 {
+    grid-template-columns: repeat(3, 1fr);
+    /* 3 barabar columns */
+    /* Center karne ke liye width kam ki aur margin auto diya */
+    width: 75%;
+    margin: 0 auto 20px auto;
+}
+
+.collection-card {
+    position: relative;
+    height: 300px;
+    /* Height set ki gayi hai */
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    text-decoration: none;
+    color: var(--light-beige);
+}
+
+.card-image-wrapper {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    transition: transform 0.5s ease;
+}
+
+/* Image Paths for 7 Collections (Local Folder: 'images/') */
+
+/* ROW 1 Images (4) */
+.collection-row.row-1 .collection-card:nth-child(1) .card-image-wrapper {
+    background-image: url('images/lawn1.jpg');
+}
+
+.collection-row.row-1 .collection-card:nth-child(2) .card-image-wrapper {
+    background-image: url('images/winter1.jpg');
+}
+
+.collection-row.row-1 .collection-card:nth-child(3) .card-image-wrapper {
+    background-image: url('images/Bridal2.jpg');
+}
+
+.collection-row.row-1 .collection-card:nth-child(4) .card-image-wrapper {
+    background-image: url('images/party2.png');
+}
+
+/* ROW 2 Images (3) */
+.collection-row.row-2 .collection-card:nth-child(1) .card-image-wrapper {
+    background-image: url('images/formal2.webp');
+}
+
+.collection-row.row-2 .collection-card:nth-child(2) .card-image-wrapper {
+    background-image: url('images/casual1.jpg');
+}
+
+.collection-row.row-2 .collection-card:nth-child(3) .card-image-wrapper {
+    background-image: url('images/acs1.jpg');
+}
+
+
+.collection-card:hover .card-image-wrapper {
+    transform: scale(1.08);
+}
+
+.card-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 25px;
+    text-align: left;
+    background: linear-gradient(0deg, rgba(48, 71, 94, 0.8) 0%, rgba(48, 71, 94, 0) 100%);
+    transition: background 0.5s ease;
+}
+
+.card-overlay h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    margin-bottom: 5px;
+}
+
+.view-link {
+    font-weight: 600;
+    color: var(--gold-accent);
+}
+
+
+/* --- Mobile Responsiveness (Collections) --- */
+@media (max-width: 768px) {
+
+    .collection-row.row-1,
+    .collection-row.row-2 {
+        grid-template-columns: repeat(2, 1fr);
+        /* Mobile par 2 columns har row mein */
+        width: 100%;
+        /* Full width */
+        margin: 0 0 20px 0;
+    }
+}
+
+/* ================================================= */
+/* --- FOOTER SECTION (FINAL CSS) --- */
+/* ================================================= */
+
+/* Brand Color Variables (Original Colors for Hover Effect) */
+:root {
+    /* ... (Yahan aapke pehle se set kiye gaye variables honge) ... */
+    --color-facebook: #1877F2;
+    --color-instagram: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #405de6 90%);
+    --color-youtube: #FF0000;
+    --color-tiktok: #000000;
+    --color-pinterest: #E60023;
+}
+
+footer {
+    background-color: var(--navy-blue);
+    /* Dark background */
+    color: var(--light-beige);
+    /* Light text color */
+    padding-top: 60px;
+    padding-left: 30px;
+    font-size: 0.95rem;
+}
+
+.footer-grid {
+    display: grid;
+    /* Columns ki width set ki gayi hai */
+    grid-template-columns: 2fr 1.2fr 1.5fr 1.2fr;
+    gap: 30px;
+    padding-bottom: 30px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer-heading {
+    color: var(--gold-accent);
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+    font-weight: 700;
+    /* Alignment Fix */
+    text-align: left;
+}
+
+.footer-col p {
+    margin-bottom: 10px;
+    line-height: 1.6;
+    /* Alignment Fix */
+    text-align: left;
+}
+
+.footer-col i {
+    color: var(--gold-accent);
+    margin-right: 10px;
+    width: 20px;
+    text-align: center;
+}
+
+.footer-links {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-links li {
+    margin-bottom: 8px;
+}
+
+.footer-links a {
+    color: var(--light-beige);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+    color: var(--gold-accent);
+}
+
+/* --- Floating Social Media Icons --- */
+/* ================================================= */
+/* --- FLOATING SOCIAL MEDIA BAR --- */
+/* ================================================= */
+
+/* Add WhatsApp Brand Color */
+:root {
+    /* ... (Existing variables) ... */
+    --color-whatsapp: #25D366;
+    /* WhatsApp Green */
+}
+
+.floating-social-bar {
+    position: fixed;
+    right: 20px;
+    /* Right side se 20px door */
+    bottom: 20px;
+    /* Bottom side se 20px door */
+    display: flex;
+    flex-direction: column;
+    /* Icons ek ke neeche ek aayenge */
+    gap: 10px;
+    /* Icons ke beech space */
+    z-index: 10000;
+    /* Sabse upar rahega */
+}
+
+.social-bubble {
+    width: 45px;
+    /* Icon ka size */
+    height: 45px;
+    /* Icon ka size */
+    background-color: var(--navy-blue);
+    /* Default background color */
+    border-radius: 50%;
+    /* Gol shape */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--light-beige);
+    /* Icon ka default color */
+    font-size: 1.4rem;
+    /* Icon ka size */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+}
+
+.social-bubble:hover {
+    color: #fff;
+    /* Hover par icon ka color white */
+    transform: scale(1.1);
+    /* Hover par thora sa bada ho */
+}
+
+/* Hover Effects (Brand Colors) */
+.social-bubble.icon-whatsapp:hover {
+    background-color: var(--color-whatsapp);
+}
+
+.social-bubble.icon-facebook:hover {
+    background-color: var(--color-facebook);
+}
+
+/* Instagram ke liye gradient */
+.social-bubble.icon-instagram:hover {
+    background-image: var(--color-instagram);
+    background-color: transparent;
+}
+
+.social-bubble.icon-youtube:hover {
+    background-color: var(--color-youtube);
+}
+
+.social-bubble.icon-tiktok:hover {
+    background-color: var(--color-tiktok);
+}
+
+.social-bubble.icon-pinterest:hover {
+    background-color: var(--color-pinterest);
+}
+
+
+/* --- Mobile Responsiveness --- */
+@media (max-width: 768px) {
+    .floating-social-bar {
+        right: 15px;
+        bottom: 15px;
+        gap: 8px;
+    }
+
+    .social-bubble {
+        width: 40px;
+        /* Mobile par thora chota size */
+        height: 40px;
+        font-size: 1.2rem;
+    }
+}
+
+/* --- FOOTER SOCIAL ICONS STYLING --- */
+
+.social-icons {
+    margin-top: 20px;
+    display: flex;
+    gap: 15px;
+    /* Alignment Fix: Left se chipakne se rokte hain */
+    padding-left: 0;
+    margin-left: 0;
+}
+
+.social-icons a {
+    font-size: 1.5rem;
+    color: var(--light-beige);
+    width: 35px;
+    height: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    transition: all 0.4s ease;
+}
+
+/* Hover Effects (Brand Colors) */
+.social-icons .icon-facebook:hover {
+    color: #fff;
+    background-color: var(--color-facebook);
+}
+
+.social-icons .icon-instagram:hover {
+    color: #fff;
+    background-image: var(--color-instagram);
+}
+
+.social-icons .icon-youtube:hover {
+    color: #fff;
+    background-color: var(--color-youtube);
+}
+
+.social-icons .icon-tiktok:hover {
+    color: #fff;
+    background-color: var(--color-tiktok);
+}
+
+.social-icons .icon-pinterest:hover {
+    color: #fff;
+    background-color: var(--color-pinterest);
+}
+
+/* Bottom Copyright Bar */
+.footer-bottom {
+    text-align: center;
+    padding: 20px 5%;
+    background-color: #2b4159;
+    font-size: 0.85rem;
+}
+
+/* --- Mobile Responsiveness (Footer) --- */
+@media (max-width: 768px) {
+    .footer-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+    }
+
+    .footer-col:nth-child(1) {
+        grid-column: 1 / span 2;
+    }
+}
+
+/* == Place Order Section CSS == */
+/* Entire CTA Section */
+.cta-large {
+    width: 100%;
+    padding: 80px 0;
+    background: linear-gradient(135deg, #ffeaff 0%, #f7e8ff 40%, #fff0ff 100%);
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    overflow: hidden;
+}
+
+/* Main text part */
+.cta-content {
+    width: 55%;
+    padding: 80px 50px;
+    z-index: 2;
+}
+
+.cta-title {
+    font-size: 48px;
+    font-weight: 900;
+    color: #3a0046;
+    margin-bottom: 18px;
+    animation: fadeUp 1.2s ease;
+}
+
+.cta-desc {
+    font-size: 18px;
+    color: #4a3452;
+    margin-bottom: 35px;
+    line-height: 1.6;
+    animation: fadeUp 1.5s ease;
+}
+
+/* Buttons */
+.cta-buttons {
+    display: flex;
+    gap: 18px;
+    flex-wrap: wrap;
+    animation: fadeUp 1.8s ease;
+}
+
+.btn {
+    padding: 16px 32px;
+    font-size: 16px;
+    border-radius: 16px;
+    border: none;
+    cursor: pointer;
+    font-weight: 700;
+    transition: 0.25s ease;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+.cta-order {
+    background: linear-gradient(90deg, #ff7a5c, #ff4a9e);
+    color: #fff;
+}
+
+.cta-contact {
+    background: linear-gradient(90deg, #6b5eff, #8e3dff);
+    color: #fff;
+}
+
+.cta-shop {
+    background: linear-gradient(90deg, #00c5ff, #007bff);
+    color: #fff;
+}
+
+.btn:hover {
+    transform: translateY(-6px) scale(1.03);
+    box-shadow: 0 16px 32px rgba(0, 0, 0, 0.2);
+}
+
+/* RIGHT SIDE Animated panel */
+.cta-side {
+    width: 65%;
+    background: url('../images/place-order.jpg') center/cover;
+    filter: brightness(0.95) saturate(1.2);
+    animation: sideFloat 6s ease-in-out infinite;
+    border-top-left-radius: 100px;
+    border-bottom-left-radius: 100px;
+    box-shadow: -20px 0px 60px rgba(0, 0, 0, 0.15);
+}
+
+@keyframes sideFloat {
+    0% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-20px);
+    }
+
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+/* FADE UP TEXT */
+@keyframes fadeUp {
+    0% {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* POPUP */
+.cta-popup {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 50;
+}
+
+.popup-card {
+    background: #fff;
+    padding: 30px;
+    width: 90%;
+    max-width: 380px;
+    border-radius: 16px;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25);
+    text-align: center;
+    position: relative;
+}
+
+.close-popup {
+    position: absolute;
+    right: 14px;
+    top: 10px;
+    cursor: pointer;
+    font-size: 22px;
+}
+
+.popup-options {
+    margin-top: 20px;
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+}
+
+.popup-options button {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 700;
+    background: #eee;
+    transition: 0.25s ease;
+}
+
+.popup-options button:hover {
+    transform: scale(1.05);
+    background: #e0e0e0;
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+    .cta-large {
+        flex-direction: column;
+        padding: 50px 20px;
+    }
+
+    .cta-content {
+        width: 100%;
+        padding: 40px 20px;
+        text-align: center;
+    }
+
+    .cta-title {
+        font-size: 32px;
+    }
+
+    .cta-desc {
+        font-size: 15px;
+    }
+
+    .cta-side {
+        width: 100%;
+        height: 250px;
+        border-radius: 30px;
+        margin-top: 40px;
+    }
+}
+
+/* Ready To Place Your Order */
+.order-section {
+    background: linear-gradient(120deg, #fff6f0, #fdeee6);
+    padding: 40px 20px;
+    border-radius: 20px;
+    max-width: 900px;
+    margin: 40px auto;
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.15);
+    font-family: 'Playfair Display', serif;
+    position: relative;
+}
+
+.order-section h2 {
+    text-align: center;
+    color: #b85c38;
+    font-size: 2rem;
+    margin-bottom: 25px;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 15px;
+}
+
+input,
+select,
+textarea {
+    padding: 12px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+    transition: 0.3s;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    border-color: #b85c38;
+    box-shadow: 0 0 8px rgba(184, 92, 56, 0.5);
+    outline: none;
+}
+
+button[type="submit"] {
+    margin-top: 15px;
+    background: #b85c38;
+    color: #fff;
+    border: none;
+    padding: 15px;
+    border-radius: 10px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: 0.3s;
+    grid-column: 1/-1;
+}
+
+button[type="submit"]:hover {
+    background: #a14e2f;
+}
+
+.price-display {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-top: 10px;
+    color: #b85c38;
+}
+
+/* Thank you popup */
+.thankyou-popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+}
+
+.thankyou-popup .popup-content {
+    background: #fff;
+    padding: 30px;
+    border-radius: 20px;
+    text-align: center;
+    max-width: 400px;
+    animation: popupFade 0.5s ease forwards;
+}
+
+.thankyou-popup h3 {
+    color: #b85c38;
+    margin-bottom: 15px;
+}
+
+.thankyou-popup .social-icons a {
+    margin: 0 10px;
+    text-decoration: none;
+    font-weight: bold;
+    color: #b85c38;
+}
+
+.thankyou-popup #closePopup {
+    margin-top: 15px;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 8px;
+    background: #b85c38;
+    color: #fff;
+    cursor: pointer;
+}
+
+.thankyou-popup .social-icons {
+    margin: 15px 0;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.thankyou-popup .social-icons a {
+    color: #b85c38;
+    /* boutique theme color default */
+    font-size: 1.8rem;
+    transition: 0.3s;
+}
+
+.thankyou-popup .social-icons a:hover {
+    color: inherit;
+    /* original color of icon */
+}
+
+.thankyou-popup .social-icons a i {
+    filter: grayscale(100%);
+    /* default gray */
+    transition: filter 0.3s, color 0.3s;
+}
+
+.thankyou-popup .social-icons a:hover i {
+    filter: none;
+    /* show original color on hover */
+}
+
+
+@keyframes popupFade {
+    from {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+/* ================================================= */
+.contact-support {
+  background: linear-gradient(120deg, #fdeee6, #fff6f0);
+  padding: 60px 20px;
+  text-align: center;
+  border-radius: 25px;
+  max-width: 900px;
+  margin: 50px auto;
+  box-shadow: 0 12px 35px rgba(0,0,0,0.12);
+  font-family: 'Playfair Display', serif;
+  position: relative;
+  overflow: hidden;
+}
+
+.contact-support h2 {
+  font-size: 2rem;
+  color: #b85c38;
+  margin-bottom: 15px;
+  animation: fadeInDown 1s ease forwards;
+}
+
+.contact-support p {
+  font-size: 1.1rem;
+  color: #555;
+  margin-bottom: 30px;
+  animation: fadeIn 1s ease 0.3s forwards;
+  opacity: 0;
+}
+
+.contact-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.contact-buttons .btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 15px 25px;
+  border-radius: 15px;
+  font-weight: bold;
+  font-size: 1rem;
+  color: #fff;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 20px rgba(184,92,56,0.3);
+  transform: translateY(0);
+}
+
+.contact-buttons .btn i {
+  font-size: 1.4rem;
+}
+
+/* Button colors */
+.btn.whatsapp { background-color: #25D366; }
+.btn.instagram { background-color: #C13584; }
+.btn.facebook { background-color: #1877F2; }
+.btn.email { background-color: #FF6B6B; }
+
+/* Hover animation */
+.btn:hover {
+  transform: translateY(-5px) scale(1.05);
+  box-shadow: 0 12px 25px rgba(184,92,56,0.35);
+}
+
+/* Animations */
+@keyframes fadeInDown {
+  from {opacity:0; transform: translateY(-30px);}
+  to {opacity:1; transform: translateY(0);}
+}
+
+@keyframes fadeIn {
+  from {opacity:0;}
+  to {opacity:1;}
+}
+
+/* Responsive */
+@media(max-width:600px){
+  .contact-buttons { flex-direction: column; gap: 15px; }
+}

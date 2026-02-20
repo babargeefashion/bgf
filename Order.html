@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Babar Gee Fashion - Boutique</title>
+    <link rel="stylesheet" href="pages/order.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@700&family=Poppins:wght@400;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+
+<body>
+    <!-- Announcement Bar  -->
+    <div class="announcement-bar">
+        <marquee behavior="scroll" direction="left" scrollamount="5">
+            🌟 **Exclusive Offer:** Get 10% Off on your first Embroidery Order! * Contact: +92 315 3446770 * Free
+            Consultation for Embroidery & Stitching * **Hurry!** Limited Time Offer! *
+        </marquee>
+    </div>
+    <!-- Header Section -->
+    <header class="top-bar">
+        <div class="brand-logo">
+            <a href="https://www.babargeefashion.com">
+                <img src="images/logo.png" alt="Babar Gee Fashion Logo" class="site-logo">
+                <span class="brand-name-text">
+                    Babar Gee Fashion
+                </span>
+            </a>
+        </div>
+        <div class="header-actions">
+            <a href="order.html" class="nav-item cta-embroidery">
+                <i class="fas fa-magic"></i> Embroidery Orders
+            </a>
+
+            <a href="order.html" class="nav-item cta-stitching">
+                <i class="fas fa-cut"></i> Stitching Orders
+            </a>
+
+            <button class="hamburger-menu" aria-label="Toggle Menu">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+
+    </header>
+
+    <div class="mobile-menu-slider">
+        <button class="close-menu" aria-label="Close Menu">&times;</button>
+
+        <div class="slider-links">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="services.html">Our Services</a>
+            <a href="shop.html">Shop</a>
+            <a href="contact.html">Contact</a>
+            <a href="order.html">Order Now</a>
+            <hr>
+            <a href="tel:+923153446770" class="mobile-slider-contact">
+                <i class="fas fa-phone"></i> +92 315 3446770
+            </a>
+        </div>
+    </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="about-hero-slider">
+        <div class="slides">
+            <!-- Slide 1 -->
+            <div class="slide active">
+                <img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?q=80&w=2070&auto=format&fit=crop"
+                    alt="Fashion Slide 1">
+            </div>
+            <!-- Slide 2 -->
+            <div class="slide">
+                <img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?q=80&w=2070&auto=format&fit=crop"
+                    alt="Fashion Slide 2">
+            </div>
+            <!-- Slide 3 -->
+            <div class="slide">
+                <img src="https://images.unsplash.com/photo-1558769132-cb1aea458c5e?q=80&w=1974&auto=format&fit=crop"
+                    alt="Fashion Slide 3">
+            </div>
+        </div>
+
+        <div class="overlay"></div>
+
+
+        <div class="hero-content">
+            <h1 class="hero-title">
+                Order Page — Upload design & place order<br>
+                <span>How we began and why we exist!</span>
+            </h1>
+            <p class="hero-subtitle">
+                Where Tradition Meets Contemporary Style !
+            </p>
+            <a href="https://www.babargeefashion.com/shop" target="_blank" class="cta-hero-button pulse-animation">
+                Shop the Luxury <i class="fas fa-arrow-down"></i>
+            </a>
+        </div>
+    </section>
+    <!-- Ready To Place Your Order -->
+    <section class="order-section">
+        <div class="order-container">
+            <h2>Place Your Order</h2>
+            <form id="orderForm">
+                <div class="form-grid">
+                    <input type="text" name="name" placeholder="Your Name" required>
+                    <input type="tel" name="phone" placeholder="Phone Number" required>
+                    <select name="fabric" id="fabric" required>
+                        <option value="">Select Fabric</option>
+                        <option value="Cotton">Cotton</option>
+                        <option value="Silk">Silk</option>
+                        <option value="Chiffon">Chiffon</option>
+                    </select>
+                    <input type="text" name="color" placeholder="Preferred Color" required>
+                    <select name="size" id="size" required>
+                        <option value="">Select Size</option>
+                        <option value="S">Small</option>
+                        <option value="M">Medium</option>
+                        <option value="L">Large</option>
+                        <option value="XL">Extra Large</option>
+                    </select>
+                    <select name="embroidery" id="embroidery" required>
+                        <option value="">Embroidery Type</option>
+                        <option value="Hand">Hand Embroidery</option>
+                        <option value="Machine">Machine Embroidery</option>
+                    </select>
+                    <select name="stitching" id="stitching" required>
+                        <option value="">Stitching Type</option>
+                        <option value="Standard">Standard</option>
+                        <option value="Premium">Premium</option>
+                    </select>
+                    <textarea name="measurements" placeholder="Measurements (Chest/Waist/Hip)" rows="2"></textarea>
+                    <textarea name="notes" placeholder="Additional Notes" rows="2"></textarea>
+                    <label>Upload Image (optional)</label>
+                    <input type="file" name="image" accept="image/*">
+                </div>
+
+                <div class="price-display">
+                    <span>Total Price: </span>
+                    <span id="totalPrice">0</span> PKR
+                </div>
+
+                <button type="submit">Place Order</button>
+            </form>
+        </div>
+
+        <!-- Thank you popup -->
+        <div id="thankYouPopup" class="thankyou-popup">
+            <div class="popup-content">
+                <h3>Thank you for your order! 🎉</h3>
+                <p>Contact us to get more details of your order instantly!</p>
+                <div class="social-icons">
+                    <a href="https://wa.me/03153446770" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                    <a href="https://www.facebook.com/babargeefashion" target="_blank"><i
+                            class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.instagram.com/babargeefashion" target="_blank"><i
+                            class="fab fa-instagram"></i></a>
+                </div>
+
+                <button id="closePopup">Close</button>
+            </div>
+        </div>
+    </section>
+    <!-- Contact/ Instant -->
+    <section class="contact-support">
+        <div class="contact-container">
+            <h2>Need Instant Support?</h2>
+            <p>Chat with us directly to get help with your boutique order or any queries.</p>
+
+            <div class="contact-buttons">
+                <a href="https://wa.me/03153446770" target="_blank" class="btn whatsapp">
+                    <i class="fab fa-whatsapp"></i> WhatsApp
+                </a>
+                <a href="https://www.instagram.com/babargeefashion/" target="_blank" class="btn instagram">
+                    <i class="fab fa-instagram"></i> Instagram
+                </a>
+                <a href="https://www.facebook.com/babargeefashion/" target="_blank" class="btn facebook">
+                    <i class="fab fa-facebook-f"></i> Facebook
+                </a>
+                <a href="mailto:babargeefashion@gmail.com" class="btn email">
+                    <i class="fas fa-envelope"></i> Email
+                </a>
+            </div>
+        </div>
+    </section>
+    <!-- End Contact/ Instant -->
+
+
+    <!-- Footer Section  -->
+    <footer>
+        <div class="container footer-grid">
+
+            <div class="footer-col footer-brand">
+                <h4 class="footer-heading">Babar Gee Fashion</h4>
+                <p>Experience the artistry of Babar Gee Fashion.
+                    Masterfully handcrafted embroidery that defines sophistication.
+                    Every design tailored with passion and perfection.
+                    Place your order online/offline and indulge in premium elegance.</p>
+            </div>
+
+            <div class="footer-col">
+                <h4 class="footer-heading">Quick Links</h4>
+                <ul class="footer-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="shop.html">Shop Now</a></li>
+                    <li><a href="order.html">Order Now</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4 class="footer-heading">Contact Info</h4>
+                <p>
+                    <i class="fas fa-map-marker-alt"></i> Near Imam Bargah, M. Shah Market,<br> Neem Ki Chari, Sukkur
+                </p>
+                <p>
+                    <i class="fas fa-phone-alt"></i> +923153446770
+                </p>
+                <p>
+                    <i class="fas fa-envelope"></i> babargeefashion@gmail.com
+                </p>
+
+                <div class="social-icons">
+                    <a href="https://www.facebook.com/babargeefashion" target="_blank" class="icon-facebook"
+                        aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.instagram.com/babargeefashion" target="_blank" class="icon-instagram"
+                        aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.youtube.com/@babargeefashion" target="_blank" class="icon-youtube"
+                        aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                    <a href="https://www.tiktok.com/@babargeefashion" target="_blank" class="icon-tiktok"
+                        aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+                    <a href="https://www.pinterest.com/babargeefashion" target="_blank" class="icon-pinterest"
+                        aria-label="Pinterest"><i class="fab fa-pinterest-p"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-col">
+                <h4 class="footer-heading">Our Collections</h4>
+                <ul class="footer-links">
+                    <li><a href="shop.html#bridal">Bridal Wear</a></li>
+                    <li><a href="shop.html#formal">Formal Wear</a></li>
+                    <li><a href="shop.html#party">Party Wear</a></li>
+                    <li><a href="shop.html#lawn">Lawn Collection</a></li>
+                    <li><a href="shop.html#winter">Winter Collection</a></li>
+                </ul>
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2025 Babar Gee Fashion. All rights reserved.</p>
+        </div>
+    </footer>
+    <script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-database-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-storage-compat.js"></script>
+
+    <script defer src="assets/order.js"></script>
+
+</body>
+
+</html>

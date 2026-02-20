@@ -1,0 +1,1324 @@
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@700&family=Poppins:wght@400;600&display=swap');
+
+:root {
+    --navy-blue: #30475E;
+    --gold-accent: #DAA520;
+    --light-beige: #F8F0E3;
+    --header-height: 70px;
+    --announcement-height: 30px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #ffffff;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* ================================================= */
+/* --- 1. GLOBAL VARIABLES CHECK --- */
+/* ================================================= */
+:root {
+    /* ... (Yaqeen karein yeh values theek hon) ... */
+    --announcement-height: 40px;
+    --header-height: 70px;
+    /* ... */
+}
+
+/* ================================================= */
+/* --- 2. MAIN HEADER / TOP BAR (TRANSITION EFFECT) --- */
+/* ================================================= */
+
+/* Announcement Bar - Scroll hone par hide hoga */
+.announcement-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: var(--announcement-height);
+    background-color: var(--gold-accent);
+    color: var(--navy-blue);
+    z-index: 1001;
+    line-height: var(--announcement-height);
+    text-align: center;
+    overflow: hidden;
+    /* Transition add kiya taake smooth hide ho */
+    transition: transform 0.3s ease-in-out;
+}
+
+/* Header/Top Bar - Shuru mein Transparent/Blur */
+.top-bar {
+    position: fixed;
+    /* Announcement Bar ke neeche se shuru ho */
+    top: var(--announcement-height);
+    left: 0;
+    width: 100%;
+    height: var(--header-height);
+
+    /* Transparent aur Blur Effect */
+    background-color: rgba(48, 71, 94, 0.7);
+    /* Thoda sa transparent Navy Blue */
+    backdrop-filter: blur(5px);
+    /* BLUR EFFECT */
+
+    color: var(--light-beige);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 2%;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    /* Transition add kiya taake smooth change ho */
+    transition: all 0.5s ease-in-out;
+}
+
+
+/* Scroll Hone Ke Baad Ki State (JS se yeh class add hogi) */
+.top-bar.scrolled {
+    /* Header ko bilkul top (0) par shift karna hai */
+    top: 0;
+    /* Solid Navy Blue Background */
+    background-color: var(--navy-blue);
+    /* Blur Effect hata diya */
+    backdrop-filter: none;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+}
+
+/* JS se jab yeh class add hogi, toh Announcement Bar chhip jayega */
+.announcement-bar.hidden {
+    /* Announcement Bar ko uski height ke barabar upar shift kar diya */
+    transform: translateY(-100%);
+}
+
+/* Logo and Text Alignment */
+.brand-logo {
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+.brand-logo a {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    line-height: 1;
+}
+
+.site-logo {
+    max-height: 55px;
+    width: auto;
+    transition: max-height 0.3s ease, transform 0.3s ease;
+}
+
+.brand-name-text {
+    font-family: 'Great Vibes', cursive;
+    font-size: 2.5rem;
+    font-weight: 400;
+    letter-spacing: 1px;
+    color: var(--light-beige);
+    transition: color 0.3s ease, font-size 0.3s ease;
+}
+
+/* Right Side Actions Container (Buttons and Hamburger) */
+.header-actions {
+    display: flex;
+    /* Buttons aur Hamburger ko side-by-side rakhega */
+    align-items: center;
+    gap: 15px;
+}
+
+/* Buttons Styling */
+.nav-item {
+    font-size: 0.95rem;
+    font-weight: 600;
+    padding: 8px 12px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    white-space: nowrap;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+.cta-embroidery {
+    background-color: var(--gold-accent);
+    color: var(--navy-blue);
+    border: 1px solid var(--gold-accent);
+}
+
+.cta-embroidery:hover {
+    background-color: #f0c541;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(218, 165, 32, 0.4);
+}
+
+.cta-stitching {
+    background-color: transparent;
+    border: 1px solid var(--light-beige);
+}
+
+.cta-stitching:hover {
+    background-color: var(--light-beige);
+    color: var(--navy-blue);
+    transform: scale(1.03);
+}
+
+/* Hamburger Icon Styling (Hamesha visible) */
+.hamburger-menu {
+    display: block;
+    background: none;
+    border: none;
+    color: var(--light-beige);
+    font-size: 1.8rem;
+    cursor: pointer;
+    margin-left: 5px;
+}
+
+/* Scroll Effect */
+.top-bar.scrolled {
+    top: 0;
+    background-color: rgba(48, 71, 94, 0.9);
+}
+
+.top-bar.scrolled .site-logo {
+    max-height: 45px;
+}
+
+.top-bar.scrolled .brand-name-text {
+    font-size: 2.0rem;
+}
+
+/* Desktop Links/Extra CTAs ko chupa dein (Taki sirf buttons aur hamburger dikhe) */
+.order-nav {
+    display: none !important;
+}
+
+
+/* --- 3. Animated Mobile Menu Slider --- */
+.mobile-menu-slider {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 80%;
+    max-width: 300px;
+    height: 100%;
+    /* Gradient for transparent look */
+    background: linear-gradient(180deg, rgba(48, 71, 94, 0.95) 0%, rgba(218, 165, 32, 0.95) 100%);
+    z-index: 2000;
+    padding: 50px 25px;
+    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.3);
+    /* Off-screen by default */
+    transform: translateX(100%);
+    transition: transform 0.5s cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+.mobile-menu-slider.active {
+    transform: translateX(0);
+}
+
+/* Slide-in */
+.close-menu {
+    position: absolute;
+    top: 15px;
+    right: 25px;
+    background: none;
+    border: none;
+    color: var(--light-beige);
+    font-size: 2rem;
+    cursor: pointer;
+}
+
+/* Slider Links Styling */
+.slider-links a {
+    display: block;
+    padding: 15px 0;
+    color: var(--light-beige);
+    font-size: 1.2rem;
+    font-weight: 600;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.slider-links a:hover {
+    color: var(--gold-accent);
+    transform: translateX(5px);
+}
+
+.mobile-slider-contact {
+    margin-top: 30px;
+    font-size: 1rem !important;
+    color: var(--gold-accent) !important;
+}
+
+
+/* --- 4. Mobile Responsiveness --- */
+@media (max-width: 768px) {
+
+    /* Logo text chota karein taake buttons ke liye jagah banayen */
+    .brand-name-text {
+        font-size: 2.0rem;
+    }
+
+    /* Mobile par buttons ko chota karein */
+    .nav-item {
+        font-size: 0.75rem;
+        /* Aur chota kiya */
+        padding: 5px 8px;
+        gap: 3px;
+    }
+
+    /* Agar jagah kam ho to stitching button chupa sakte hain */
+    .cta-stitching {
+        display: none;
+        /* Sirf embroidery button dikhega, jagah bachane ke liye */
+    }
+}
+
+/* Content Overlay Styling (Text Overlay) */
+/* Hero Content Overlay */
+.hero-content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding-top: var(--header-height);
+    /* Header ke neeche se content shuru ho */
+
+    /* Dark Transparent Overlay for Text Visibility */
+    background: rgba(0, 0, 0, 0.55);
+    /* Thora zyada dark kiya taake video clear rahe */
+    color: var(--light-beige);
+    z-index: 10;
+}
+
+.hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    /* Bada aur wazeh title */
+    font-weight: 700;
+    margin-bottom: 10px;
+    text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.7);
+}
+
+.hero-title span {
+    color: var(--gold-accent);
+}
+
+.hero-subtitle {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.6rem;
+    margin-bottom: 40px;
+    font-weight: 400;
+}
+
+/* Call to Action Button */
+.cta-hero-button {
+    background-color: var(--gold-accent);
+    color: var(--navy-blue);
+    padding: 18px 40px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    border-radius: 5px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.cta-hero-button:hover {
+    background-color: #f0c541;
+    transform: scale(1.05);
+}
+
+/* Pulse Animation for CTA (Same as before) */
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(218, 165, 32, 0.7);
+    }
+
+    70% {
+        box-shadow: 0 0 0 20px rgba(218, 165, 32, 0);
+    }
+
+    100% {
+        box-shadow: 0 0 0 0 rgba(218, 165, 32, 0);
+    }
+}
+
+.pulse-animation {
+    animation: pulse 2s infinite;
+}
+
+
+/* --- Mobile Responsiveness (For Video and Text) --- */
+@media (max-width: 768px) {
+
+    .hero-title {
+        font-size: 1.5rem;
+        /* Mobile par title chota karein */
+        line-height: 1.2;
+    }
+
+    .hero-subtitle {
+        font-size: 1.1rem;
+        /* Mobile par subtitle chota karein */
+    }
+
+    .cta-hero-button {
+        padding: 12px 25px;
+        font-size: 1rem;
+    }
+}
+
+.hero-subtitle {
+    /* Define the bright neon color */
+    --neon-color: #9b3e26;
+    /* Vibrant Magenta */
+
+    /* Base Font Styles (from original) */
+    font-style: normal;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    /* Recommended a modern sans-serif for sharp neon */
+    letter-spacing: 2px;
+    /* Increased letter-spacing for glow visibility */
+    color: #e4a9a9;
+    /* Text itself should be pure white/very light for contrast */
+    font-weight: 900;
+    /* Boldest weight for solid text */
+    margin-top: 15px;
+    margin-bottom: 40px;
+    font-size: 1.8rem;
+    /* Slightly larger for impact */
+    text-transform: uppercase;
+
+    /* NEON GLOW EFFECT */
+    text-shadow:
+        /* 1st Layer: Inner, sharp glow */
+        0 0 7px var(--neon-color),
+        /* 2nd Layer: Medium, wide glow */
+        0 0 10px var(--neon-color),
+        /* 3rd Layer: Outer, strong glow */
+        0 0 21px var(--neon-color),
+        /* 4th Layer: Very wide, faded glow (the "halo") */
+        0 0 42px rgba(71, 52, 175, 0.6),
+        0 0 82px rgba(71, 52, 175, 0.4);
+
+    /* Optional: Add a slight animation for a subtle pulsing effect */
+    animation: neon-pulse 1.5s ease-in-out infinite alternate;
+}
+
+/* Optional: Keyframes for the pulsing animation */
+@keyframes neon-pulse {
+    from {
+        text-shadow:
+            0 0 7px var(--neon-color),
+            0 0 10px var(--neon-color),
+            0 0 21px var(--neon-color),
+            0 0 42px rgba(71, 52, 175, 0.6),
+            0 0 82px rgba(71, 52, 175, 0.4);
+    }
+
+    to {
+        text-shadow:
+            0 0 5px var(--neon-color),
+            0 0 8px var(--neon-color),
+            0 0 15px var(--neon-color),
+            0 0 35px rgba(71, 52, 175, 0.8),
+            /* Slightly brighter pulse */
+            0 0 65px rgba(71, 52, 175, 0.5);
+    }
+}
+
+.brand-story-section {
+    /* Existing Styles */
+    padding: 80px 5%;
+    background-color: #f0f0f0;
+    color: var(--navy-blue, #001f3f);
+    /* Fallback added for clarity */
+    font-family: 'Poppins', sans-serif;
+    line-height: 1.8;
+
+    /* New: Setting up Flex context on the container */
+    display: flex;
+    /* Makes it a flex container */
+    justify-content: center;
+    /* Centers the inner content container */
+}
+
+.story-content-container {
+    display: flex;
+    /* Enables side-by-side layout for text and image */
+    max-width: 1200px;
+    /* Optional: Sets a max width for large screens */
+    width: 100%;
+    align-items: center;
+    /* Vertically aligns text and image */
+    gap: 50px;
+    /* Adds space between the text and image */
+}
+
+.story-text {
+    flex: 1;
+    /* Allows the text area to grow and take up space */
+    padding-right: 20px;
+    /* Space from the edge of the text container */
+}
+
+.story-image {
+    flex: 1;
+    /* Allows the image area to grow and take up equal space */
+    min-height: 450px;
+    /* Sets the height for the image area */
+    border-radius: 10px;
+    /* Soft edges for the image */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    /* Subtle shadow for depth */
+
+
+    /* Image Addition using CSS */
+    background-image: url('images/logo.png');
+    /* CHANGE THIS PATH TO YOUR IMAGE */
+    background-size: cover;
+    /* Ensures the image covers the entire container */
+    background-position: center;
+    /* Centers the image within the container */
+    background-repeat: no-repeat;
+}
+
+/* Media Query for Mobile/Tablet View */
+@media (max-width: 768px) {
+    .story-content-container {
+        flex-direction: column;
+        /* Stacks text and image vertically on small screens */
+        gap: 30px;
+    }
+
+    .story-image {
+        /* Adjust height for mobile view if needed */
+        min-height: 300px;
+        width: 100%;
+    }
+}
+
+/* ============================= */
+/*     ABOUT PAGE MAIN CSS       */
+/* ============================= */
+/* Hero Section Container */
+.about-hero-slider {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    /* Full viewport height */
+    overflow: hidden;
+    /* Crucial to clip the zooming images */
+}
+
+/* Slides Container */
+.slides {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+/* Individual Slide */
+.slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    /* Hidden by default */
+    transition: opacity 1.5s ease-in-out;
+    /* Smooth fade between slides */
+    z-index: 1;
+}
+
+/* The Active Slide (Visible) */
+.slide.active {
+    opacity: 1;
+    z-index: 2;
+}
+
+/* Image Styling */
+.slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* Ensures image covers area without stretching */
+    object-position: center;
+
+    /* Initial State for Zoom */
+    transform: scale(1);
+    transition: transform 0.5s ease-out;
+    /* Fast reset when slide leaves */
+}
+
+/* The Zoom Effect Animation 
+           When the parent .slide has the .active class, 
+           the image slowly scales up */
+.slide.active img {
+    transform: scale(1.15);
+    /* Zoom level */
+    transition: transform 6s linear;
+    /* Duration matches slide interval + buffer */
+}
+
+/* Dark Overlay */
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: none;
+    z-index: 3;
+    pointer-events: none;
+    /* Allows clicking through if needed */
+}
+
+@keyframes fadeUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.8rem;
+    color: var(--navy-blue);
+    margin-bottom: 15px;
+}
+
+.section-text {
+    max-width: 850px;
+    margin: 0 auto;
+    font-size: 1.1rem;
+    color: #555;
+    line-height: 1.8;
+}
+
+
+/* ===============================
+   WHY CHOOSE US / KEY FEATURES
+=============================== */
+.choose-section {
+    padding: 80px 20px;
+    background-color: #fff5f5;
+    font-family: 'Poppins', sans-serif;
+    color: #333;
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.section-header h2 {
+    font-size: 36px;
+    color: #b76e79;
+    font-weight: 700;
+}
+
+.section-header p {
+    font-size: 18px;
+    color: #555;
+    max-width: 800px;
+    margin: 0 auto;
+    line-height: 1.7;
+}
+
+/* Features Grid */
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+}
+
+/* Feature Card */
+.feature-card {
+    position: relative;
+    border-radius: 15px;
+    overflow: hidden;
+    color: #fff;
+    text-align: center;
+    min-height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 20px;
+    background-size: cover;
+    background-position: center;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+/* Overlay for readability */
+.feature-card .feature-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 0;
+    transition: background 0.3s ease;
+}
+
+.feature-card:hover .feature-overlay {
+    background: rgba(0, 0, 0, 0.2);
+}
+
+/* Text on card */
+.feature-card h3,
+.feature-card p {
+    position: relative;
+    z-index: 1;
+}
+
+.feature-card h3 {
+    font-size: 22px;
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+.feature-card p {
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+/* Hover lift */
+.feature-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .features-grid {
+        gap: 20px;
+    }
+
+    .feature-card {
+        min-height: 250px;
+    }
+
+    .feature-card h3 {
+        font-size: 20px;
+    }
+
+    .feature-card p {
+        font-size: 15px;
+    }
+}
+
+
+/* BRAND STORY SECTION */
+.brand-story-area {
+    padding: 80px 5%;
+    background: var(--light-beige);
+}
+
+.story-container {
+    display: flex;
+    align-items: center;
+    gap: 50px;
+    max-width: 1200px;
+    margin: auto;
+}
+
+.story-left {
+    flex: 1;
+    color: var(--navy-blue);
+    line-height: 1.8;
+}
+
+.story-left p {
+    margin-bottom: 15px;
+}
+
+.story-right {
+    flex: 1;
+}
+
+.story-right img {
+    width: 100%;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+}
+
+
+
+/* MOBILE VIEW */
+@media (max-width: 768px) {
+
+    .why-grid {
+        flex-direction: column;
+    }
+
+    .why-card {
+        width: 100%;
+    }
+
+    .story-container {
+        flex-direction: column;
+    }
+
+    .story-right img {
+        width: 100%;
+    }
+}
+
+/* ============================= */
+/*   MISSION & VISION SECTION    */
+/* ============================= */
+
+.mission-vision-section {
+    padding: 80px 5%;
+    background-color: #fff;
+    text-align: center;
+}
+
+.mv-subtitle {
+    font-size: 1.1rem;
+    color: #666;
+    margin-bottom: 50px;
+}
+
+/* Grid for Mission + Vision */
+.mv-grid {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+/* Card Design */
+.mv-card {
+    background-color: var(--light-beige);
+    padding: 40px 30px;
+    width: 45%;
+    border-radius: 12px;
+    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.1);
+    transition: 0.3s;
+    border-top: 4px solid var(--gold-accent);
+}
+
+.mv-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+.mv-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.7rem;
+    color: var(--navy-blue);
+    margin-bottom: 10px;
+}
+
+.mv-card p {
+    font-size: 1rem;
+    color: #444;
+    line-height: 1.7;
+}
+
+/* Icons */
+.mv-icon {
+    font-size: 3rem;
+    color: var(--gold-accent);
+    margin-bottom: 15px;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .mv-grid {
+        flex-direction: column;
+        gap: 25px;
+    }
+
+    .mv-card {
+        width: 100%;
+    }
+}
+
+/* ============================= */
+/*        OUR JOURNEY CSS        */
+/* ============================= */
+
+.our-journey-section {
+    padding: 80px 5%;
+    background-color: var(--light-beige);
+    text-align: center;
+}
+
+.journey-sub {
+    font-size: 1.1rem;
+    color: #555;
+    margin-bottom: 50px;
+}
+
+/* Timeline Container */
+.journey-timeline {
+    position: relative;
+    max-width: 900px;
+    margin: auto;
+    padding-left: 20px;
+    border-left: 4px solid var(--gold-accent);
+    /* Gold Line */
+}
+
+/* Each Step */
+.journey-item {
+    position: relative;
+    margin-bottom: 40px;
+}
+
+/* Gold Dot */
+.journey-dot {
+    width: 20px;
+    height: 20px;
+    background-color: var(--gold-accent);
+    border-radius: 50%;
+    position: absolute;
+    left: -12px;
+    top: 5px;
+}
+
+/* Journey Box */
+.journey-box {
+    background-color: #5e789e;
+    padding: 25px 25px;
+    border-radius: 12px;
+    box-shadow: 0 6px 25px rgba(197, 154, 154, 0.1);
+    border-left: 4px solid var(--navy-blue);
+    transition: 0.3s;
+}
+
+/* Hover Effect */
+.journey-box:hover {
+    transform: translateX(8px);
+    box-shadow: 0 10px 35px rgba(156, 91, 91, 0.15);
+}
+
+/* Titles */
+.journey-box h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    color: #ffd700;
+    /* changed for visibility */
+    margin-bottom: 8px;
+}
+
+/* Text */
+.journey-box p {
+    color: #eee;
+    /* changed for visibility */
+    line-height: 1.7;
+    font-size: 1rem;
+}
+
+/* Fade Animation */
+.journey-item {
+    opacity: 1;
+    /* changed from 0 so text is visible by default */
+    transform: translateY(0);
+    /* reset transform */
+    transition: 0.8s ease-out;
+}
+
+.journey-item.fade-in {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .journey-timeline {
+        padding-left: 15px;
+        border-left: 3px solid var(--gold-accent);
+    }
+
+    .journey-box {
+        padding: 18px;
+    }
+
+    .journey-box h3 {
+        font-size: 1.3rem;
+    }
+}
+
+/* ============================= */
+/*         TEAM SECTION          */
+/* ============================= */
+:root {
+    --light-beige: #fdf5e6;
+    --gold-accent: #ffd700;
+}
+
+.team-section {
+    padding: 80px 5%;
+    background-color: #fff;
+    text-align: center;
+}
+
+.section-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+    color: #b06bab;
+}
+
+.team-sub {
+    font-size: 1.1rem;
+    color: #555;
+    margin-bottom: 60px;
+}
+
+.team-grid {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.team-card {
+    width: 22%;
+    background: var(--light-beige);
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.1);
+    border-top: 4px solid var(--gold-accent);
+    transition: 0.3s;
+    opacity: 1;
+    /* visible by default */
+    transform: translateY(0);
+    /* reset transform */
+    text-align: center;
+}
+
+.team-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.2);
+}
+
+.team-icon {
+    font-size: 50px;
+    margin-bottom: 20px;
+    color: #b06bab;
+}
+
+.team-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    color: #1a1a1a;
+    margin-bottom: 5px;
+}
+
+.team-role {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #b06bab;
+    margin-bottom: 15px;
+}
+
+.team-info {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: #222;
+}
+
+@media (max-width: 1200px) {
+    .team-card {
+        width: 45%;
+        margin-bottom: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .team-card {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+}
+
+
+
+
+
+/* ================================================= */
+/* --- FOOTER SECTION (FINAL CSS) --- */
+/* ================================================= */
+
+/* Brand Color Variables (Original Colors for Hover Effect) */
+:root {
+    /* ... (Yahan aapke pehle se set kiye gaye variables honge) ... */
+    --color-facebook: #1877F2;
+    --color-instagram: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #405de6 90%);
+    --color-youtube: #FF0000;
+    --color-tiktok: #000000;
+    --color-pinterest: #E60023;
+}
+
+footer {
+    background-color: var(--navy-blue);
+    /* Dark background */
+    color: var(--light-beige);
+    /* Light text color */
+    padding-top: 60px;
+    padding-left: 30px;
+    font-size: 0.95rem;
+}
+
+.footer-grid {
+    display: grid;
+    /* Columns ki width set ki gayi hai */
+    grid-template-columns: 2fr 1.2fr 1.5fr 1.2fr;
+    gap: 30px;
+    padding-bottom: 30px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer-heading {
+    color: var(--gold-accent);
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+    font-weight: 700;
+    /* Alignment Fix */
+    text-align: left;
+}
+
+.footer-col p {
+    margin-bottom: 10px;
+    line-height: 1.6;
+    /* Alignment Fix */
+    text-align: left;
+}
+
+.footer-col i {
+    color: var(--gold-accent);
+    margin-right: 10px;
+    width: 20px;
+    text-align: center;
+}
+
+.footer-links {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-links li {
+    margin-bottom: 8px;
+}
+
+.footer-links a {
+    color: var(--light-beige);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+    color: var(--gold-accent);
+}
+@media (max-width: 768px) {
+    .footer-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+    }
+
+    .footer-col:nth-child(1) {
+        grid-column: 1 / span 2;
+    }
+
+    .footer-bottom {
+        font-size: 0.8rem;
+    }
+
+    .social-icons {
+        justify-content: center;
+    }
+}
+
+/* --- Floating Social Media Icons --- */
+/* ================================================= */
+/* --- FLOATING SOCIAL MEDIA BAR --- */
+/* ================================================= */
+
+/* Add WhatsApp Brand Color */
+:root {
+    /* ... (Existing variables) ... */
+    --color-whatsapp: #25D366;
+    /* WhatsApp Green */
+}
+
+.floating-social-bar {
+    position: fixed;
+    right: 20px;
+    /* Right side se 20px door */
+    bottom: 20px;
+    /* Bottom side se 20px door */
+    display: flex;
+    flex-direction: column;
+    /* Icons ek ke neeche ek aayenge */
+    gap: 10px;
+    /* Icons ke beech space */
+    z-index: 10000;
+    /* Sabse upar rahega */
+}
+
+.social-bubble {
+    width: 45px;
+    /* Icon ka size */
+    height: 45px;
+    /* Icon ka size */
+    background-color: var(--navy-blue);
+    /* Default background color */
+    border-radius: 50%;
+    /* Gol shape */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--light-beige);
+    /* Icon ka default color */
+    font-size: 1.4rem;
+    /* Icon ka size */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+}
+
+.social-bubble:hover {
+    color: #fff;
+    /* Hover par icon ka color white */
+    transform: scale(1.1);
+    /* Hover par thora sa bada ho */
+}
+
+/* Hover Effects (Brand Colors) */
+.social-bubble.icon-whatsapp:hover {
+    background-color: var(--color-whatsapp);
+}
+
+.social-bubble.icon-facebook:hover {
+    background-color: var(--color-facebook);
+}
+
+/* Instagram ke liye gradient */
+.social-bubble.icon-instagram:hover {
+    background-image: var(--color-instagram);
+    background-color: transparent;
+}
+
+.social-bubble.icon-youtube:hover {
+    background-color: var(--color-youtube);
+}
+
+.social-bubble.icon-tiktok:hover {
+    background-color: var(--color-tiktok);
+}
+
+.social-bubble.icon-pinterest:hover {
+    background-color: var(--color-pinterest);
+}
+
+
+/* --- Mobile Responsiveness --- */
+@media (max-width: 768px) {
+    .floating-social-bar {
+        right: 15px;
+        bottom: 15px;
+        gap: 8px;
+    }
+
+    .social-bubble {
+        width: 40px;
+        /* Mobile par thora chota size */
+        height: 40px;
+        font-size: 1.2rem;
+    }
+}
+
+/* --- FOOTER SOCIAL ICONS STYLING --- */
+
+.social-icons {
+    margin-top: 20px;
+    display: flex;
+    gap: 15px;
+    /* Alignment Fix: Left se chipakne se rokte hain */
+    padding-left: 0;
+    margin-left: 0;
+}
+
+.social-icons a {
+    font-size: 1.5rem;
+    color: var(--light-beige);
+    width: 35px;
+    height: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    transition: all 0.4s ease;
+}
+
+/* Hover Effects (Brand Colors) */
+.social-icons .icon-facebook:hover {
+    color: #fff;
+    background-color: var(--color-facebook);
+}
+
+.social-icons .icon-instagram:hover {
+    color: #fff;
+    background-image: var(--color-instagram);
+}
+
+.social-icons .icon-youtube:hover {
+    color: #fff;
+    background-color: var(--color-youtube);
+}
+
+.social-icons .icon-tiktok:hover {
+    color: #fff;
+    background-color: var(--color-tiktok);
+}
+
+.social-icons .icon-pinterest:hover {
+    color: #fff;
+    background-color: var(--color-pinterest);
+}
+
+/* Bottom Copyright Bar */
+.footer-bottom {
+    text-align: center;
+    padding: 20px 5%;
+    background-color: #2b4159;
+    font-size: 0.85rem;
+}
+
+/* --- Mobile Responsiveness (Footer) --- */
+@media (max-width: 768px) {
+    .footer-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+    }
+
+    .footer-col:nth-child(1) {
+        grid-column: 1 / span 2;
+    }
+}

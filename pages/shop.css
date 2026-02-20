@@ -1,0 +1,161 @@
+/* ===== GLOBAL ===== */
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #f8f0e3, #fff0ff);
+    overflow-x: hidden;
+    height: 100%;
+}
+
+a {
+    text-decoration: none;
+}
+.babar-gee-fashion {
+    font-family: 'Playfair Display', serif;
+    font-size: 4rem;
+    font-weight: 700;
+    color: #6168a3;
+    margin-bottom: 20px;
+    animation: fadeInDown 1.5s ease forwards;
+    transition-duration: 2s;
+}
+/* ===== UNDER CONSTRUCTION WRAPPER ===== */
+.under-construction-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    text-align: center;
+    padding: 40px 20px;
+    position: relative;
+}
+
+/* ===== TEXT CONTENT ===== */
+.construction-content .title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #30475E;
+    margin-bottom: 20px;
+    animation: fadeInDown 1.5s ease forwards;
+}
+
+.construction-content .description {
+    font-size: 1.2rem;
+    color: #4a3452;
+    line-height: 1.8;
+    max-width: 700px;
+    margin: 0 auto 35px auto;
+    animation: fadeInUp 1.5s ease forwards;
+}
+
+/* ===== BUTTONS ===== */
+.buttons {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 20px;
+    animation: fadeInUp 2s ease forwards;
+}
+
+.btn {
+    padding: 14px 28px;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.review-btn {
+    background: linear-gradient(90deg, #ff7a5c, #ff4a9e);
+    color: #fff;
+    border: none;
+}
+
+.home-btn {
+    background: linear-gradient(90deg, #6b5eff, #8e3dff);
+    color: #fff;
+    border: none;
+}
+
+.btn:hover {
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 12px 28px rgba(0,0,0,0.25);
+}
+
+/* ===== ANIMATION EFFECTS ===== */
+@keyframes fadeInDown {
+    0% { opacity: 0; transform: translateY(-50px);}
+    100% { opacity: 1; transform: translateY(0);}
+}
+
+@keyframes fadeInUp {
+    0% { opacity: 0; transform: translateY(50px);}
+    100% { opacity: 1; transform: translateY(0);}
+}
+
+/* ===== GEAR ANIMATION ===== */
+.construction-animation {
+    position: absolute;
+    bottom: 50px;
+    display: flex;
+    gap: 30px;
+}
+
+.gear {
+    width: 60px;
+    height: 60px;
+    border: 5px solid #30475E;
+    border-radius: 50%;
+    position: relative;
+}
+
+.gear::before, .gear::after {
+    content: '';
+    position: absolute;
+    background: #30475E;
+}
+
+.gear::before {
+    width: 12px;
+    height: 30px;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 4px;
+}
+
+.gear::after {
+    width: 30px;
+    height: 12px;
+    left: -10px;
+    top: 50%;
+    transform: translateY(-50%);
+    border-radius: 4px;
+}
+
+.gear1 { animation: spin 3s linear infinite; }
+.gear2 { animation: spin 4s linear reverse infinite; width: 50px; height: 50px; }
+.gear3 { animation: spin 5s linear infinite; width: 40px; height: 40px; }
+
+@keyframes spin {
+    0% { transform: rotate(0deg);}
+    100% { transform: rotate(360deg);}
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+    .construction-content .title {
+        font-size: 2rem;
+    }
+    .construction-content .description {
+        font-size: 1rem;
+    }
+    .gear { width: 40px; height: 40px; }
+}
